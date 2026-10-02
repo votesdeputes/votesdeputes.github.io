@@ -7,7 +7,7 @@
   const input = document.getElementById("commune"), out = document.getElementById("resultats");
   let communes = null, loading = null;
 
-  const load = () => loading || (loading = fetch("data/communes.json").then(r => r.json()).then(d => {
+  const load = () => loading || (loading = fetch(`data/communes.json?v=${document.body.dataset.v}`).then(r => r.json()).then(d => {
     communes = d.communes.map(c => ({ code: c[0], nom: c[1], dep: c[2], circos: c[3], cps: c[4], q: nq(c[1]) }));
   }));
 

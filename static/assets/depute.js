@@ -94,10 +94,10 @@
   bars();
 
   Promise.all([
-    fetch(`${root}data/scrutins.json`).then(r => r.json()),
-    fetch(`${root}data/votes/${D.id}.txt`).then(r => r.text())
+    fetch(`${root}data/scrutins.json?v=${document.body.dataset.v}`).then(r => r.json()),
+    fetch(`${root}data/votes/${D.id}.txt?v=${document.body.dataset.v}`).then(r => r.text())
   ]).then(([s, v]) => {
-    rows = s.rows; groupes = s.groupes; infos = s.infos; dates = s.derniersJours; themes = s.themes;
+    rows = s.rows; groupes = s.groupes; infos = s.infos; dates = s.derniersJours; themes = s.themes || [];
     $("theme").insertAdjacentHTML("beforeend", themes.map((th, i) => `<option value="${i}">${esc(th.nom)}</option>`).join(""));
     for (const [, n, code] of v.matchAll(/(\d+)([pcan])/g)) votes[n] = code;
     NOTES.r = "Les scrutins des trois derniers jours de séance : " + dates.slice().reverse().map(fdate).join(", ") + ".";

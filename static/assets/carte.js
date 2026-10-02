@@ -43,7 +43,7 @@
       : `<div class="match"><span class="mono">${lieu}</span><b>Siège vacant</b><span>En attente d'une élection partielle</span></div>`;
   }
 
-  fetch("data/carte.json").then(r => r.json()).then(geo => {
+  fetch(`data/carte.json?v=${document.body.dataset.v}`).then(r => r.json()).then(geo => {
     couche = L.geoJSON(geo, {
       style,
       onEachFeature: (f, layer) => {

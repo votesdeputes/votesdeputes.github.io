@@ -19,13 +19,15 @@ import sys
 import unicodedata
 import urllib.request
 import zipfile
-from datetime import date
+from datetime import date, datetime, timezone
 from html import escape
 from pathlib import Path
 
 SITE_NAME = "Votes des députés"
 LEGISLATURE = "17"
 NB_DEPUTES = 577
+# Ajouté aux adresses des scripts, styles et données : chaque publication force les navigateurs à recharger.
+VERSION = datetime.now(timezone.utc).strftime("%Y%m%d%H%M")
 
 ROOT = Path(__file__).parent
 CACHE = ROOT / "cache"
@@ -232,8 +234,8 @@ def badge(g):
 
 def page(title, description, body, depth=0, scripts=(), styles=()):
     up = "../" * depth
-    tags = "".join(f'<link rel="stylesheet" href="{up}assets/{s}">' for s in styles)
-    tags += "".join(f'<script src="{up}assets/{s}" defer></script>' for s in scripts)
+    tags = "".join(f'<link rel="stylesheet" href="{up}assets/{s}?v={VERSION}">' for s in styles)
+    tags += "".join(f'<script src="{up}assets/{s}?v={VERSION}" defer></script>' for s in scripts)
     return f"""<!doctype html>
 <html lang="fr">
 <head>
@@ -244,11 +246,11 @@ def page(title, description, body, depth=0, scripts=(), styles=()):
 <meta property="og:title" content="{escape(title)}">
 <meta property="og:description" content="{escape(description)}">
 <meta property="og:type" content="website">
-<link rel="stylesheet" href="{up}assets/fonts.css">
-<link rel="stylesheet" href="{up}assets/style.css">
+<link rel="stylesheet" href="{up}assets/fonts.css?v={VERSION}">
+<link rel="stylesheet" href="{up}assets/style.css?v={VERSION}">
 {tags}
 </head>
-<body data-root="{up}">
+<body data-root="{up}" data-v="{VERSION}">
 <div class="wrap">
 <nav class="top"><a href="{up}index.html" class="brand">{escape(SITE_NAME)}</a><a href="{up}methode.html">Méthode</a></nav>
 {body}
