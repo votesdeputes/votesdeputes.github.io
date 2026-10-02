@@ -1,5 +1,5 @@
 {
- "_note": "Classement automatique : un scrutin reçoit chaque thème dont au moins un mot-clé apparaît dans le titre du texte concerné (sans accents ni majuscules). Un texte peut avoir plusieurs thèmes. Les amendements héritent des thèmes de leur texte. Un mot-clé est cherché en début de mot (« agricol » trouve « agricole » et « agricoles »). La liste « sauf » retire une expression avant la recherche (« sécurité sociale » ne relève pas de « Sécurité et justice »).",
+ "_note": "Classement automatique : un scrutin reçoit chaque thème dont au moins un mot-clé apparaît dans le titre du texte concerné (sans accents ni majuscules). Un texte peut avoir plusieurs thèmes. Les amendements héritent des thèmes de leur texte. Un mot-clé est cherché en début de mot (« agricol » trouve « agricole » et « agricoles »). La liste « sauf » retire une expression avant la recherche (« sécurité sociale » ne relève pas de « Sécurité et justice »). Les sujets trouvés dans le contenu des textes (data/contenu.json, produit par scripts/contenu.py) s'ajoutent à ceux du titre.",
  "themes": [
   {
    "id": "budget",
@@ -243,7 +243,7 @@
   },
   {
    "id": "egalite-droits",
-   "nom": "Égalité, droits et discriminations",
+   "nom": "Droits, libertés et discriminations",
    "mots": [
     "violences sexuelles",
     "violences sexistes",
@@ -260,7 +260,12 @@
     "culpabilisation des victimes",
     "projet parental",
     "penale du viol",
-    "violences commises dans les secteurs"
+    "violences commises dans les secteurs",
+    "libertes publiques",
+    "libertes fondamentales",
+    "etat de droit",
+    "liberte d'expression",
+    "droit de manifester"
    ]
   },
   {

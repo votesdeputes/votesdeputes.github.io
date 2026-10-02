@@ -44,7 +44,7 @@ SIGLES = {"ECOS": "EcoS", "DEM": "Dem", "UDDPLR": "UDR", "NI": "NI"}
 POS = {"pour": "p", "contre": "c", "abstention": "a", "nonVotant": "n"}
 
 
-TEXTE = re.compile(r"((?:projet|proposition) de (?:loi|résolution).*)", re.I)
+TEXTE = re.compile(r"((?:projet|proposition) de (?:loi|résolution)\b.*)", re.I)
 
 
 def norm(s):
@@ -58,9 +58,18 @@ def texte_de(titre):
     return m.group(1) if m else titre
 
 
-def charge_themes():
+def cle_texte(titre):
+    """Clé d'un texte de loi, sans les mentions de lecture : sert à relier un scrutin à data/contenu.json."""
+    n = norm(texte_de(titre))
+    return re.sub(r"\s*\((premiere|deuxieme|nouvelle|seconde|lecture|texte|cmp|commission)[^)]*\)", "", n).strip(" .)")
+
+
+def charge_themes(avec_contenu=True):
     themes = json.loads((ROOT / "data" / "themes.json").read_text(encoding="utf-8"))["themes"]
+    contenu = ROOT / "data" / "contenu.json"
+    ajouts = json.loads(contenu.read_text(encoding="utf-8")) if avec_contenu and contenu.exists() else {}
     for th in themes:
+        th["contenu"] = {cle for cle, v in ajouts.items() if th["id"] in v["ajouts"]}
         th["re"] = re.compile("|".join(r"(?<![a-z])" + re.escape(norm(m)) for m in th["mots"]))
         th["sauf_n"] = [norm(s) for s in th.get("sauf", [])]
     return themes
@@ -73,7 +82,7 @@ def themes_de(titre, themes):
         s = base
         for sauf in th["sauf_n"]:
             s = s.replace(sauf, " ")
-        if th["re"].search(s):
+        if th["re"].search(s) or cle_texte(titre) in th["contenu"]:
             ids.append(th["id"])
     return ids
 
@@ -295,6 +304,7 @@ def page_depute(d, st, zones):
 <section>
   <h2>Ses votes par sujet</h2>
   <p class="sub">Ses positions sur l'ensemble des textes de chaque sujet (vote final). Touchez un sujet pour voir le détail de ses votes, amendements compris.</p>
+  <p class="sub"><strong>« Contre » veut dire contre le texte, pas contre le sujet.</strong> Un texte qui réautorise un pesticide est classé en « Santé » et en « Environnement » : voter contre ce texte compte comme un vote « contre » dans ces deux sujets. Regardez le détail pour savoir ce que chaque texte change.</p>
   <div class="sujets" id="sujets"><p class="sub">Chargement…</p></div>
 </section>
 <section id="registre">

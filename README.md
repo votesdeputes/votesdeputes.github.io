@@ -28,6 +28,7 @@ Le site est publié anonymement : les commits utilisent une identité neutre (co
 | `scripts/carte.py` | Construit `data/carte.json` (contours simplifiés des circonscriptions). À relancer seulement si le découpage change |
 | `scripts/communes.py` | Construit `data/communes.json` (communes, codes postaux, circonscriptions). À relancer seulement si le découpage change |
 | `data/themes.json` | Les 15 sujets et leurs mots-clés (classement des scrutins). `python scripts/themes_test.py -v` affiche le classement de chaque texte |
+| `data/contenu.json` | Sujets ajoutés d'après le contenu des textes, avec les termes trouvés. Produit par `scripts/contenu.py`, à relancer quand de nouveaux textes sont votés |
 | `data/circonscriptions-75.json` | Arrondissements et quartiers de chaque circonscription de Paris (découpage de 2010) |
 | `static/assets/` | Style et scripts des pages |
 | `content/` | Pages de texte (méthode, mentions légales) |
