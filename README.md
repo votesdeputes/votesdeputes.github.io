@@ -1,6 +1,6 @@
-# Paris à l'Assemblée
+# Votes des députés
 
-Site statique qui montre comment votent les 18 députés de Paris, à partir de l'open data de l'Assemblée nationale. Il est régénéré et republié chaque nuit par GitHub Actions.
+Site statique qui montre comment votent les 577 députés à l'Assemblée nationale, à partir de l'open data officiel. Il est régénéré et republié chaque nuit par GitHub Actions.
 
 ## Générer le site en local
 
@@ -14,13 +14,9 @@ python -m http.server 8765 --directory site
 
 Puis ouvrir http://localhost:8765.
 
-## Mettre en ligne sur GitHub Pages
+## Publication
 
-1. Créer un dépôt sur GitHub et y pousser ce dossier (branche `main`).
-2. Dans le dépôt : **Settings → Pages → Build and deployment → Source : GitHub Actions**.
-3. Le workflow `.github/workflows/deploy.yml` se lance à chaque push, chaque nuit à 5h30 UTC, et à la demande depuis l'onglet **Actions**.
-
-Le site est alors en ligne sur `https://<compte>.github.io/<depot>/`. Pour un nom de domaine, voir **Settings → Pages → Custom domain**.
+Le workflow `.github/workflows/deploy.yml` publie le site sur GitHub Pages (Settings → Pages → Source : GitHub Actions) à chaque push, chaque nuit à 5h30 UTC, et à la demande depuis l'onglet **Actions**.
 
 Le site est publié anonymement : les commits utilisent une identité neutre (configurée dans ce dépôt uniquement) et les mentions légales indiquent un éditeur non professionnel anonyme.
 
@@ -28,20 +24,18 @@ Le site est publié anonymement : les commits utilisent une identité neutre (co
 
 | Chemin | Rôle |
 | --- | --- |
-| `build.py` | Télécharge les données, calcule les statistiques, écrit `site/` |
-| `data/circonscriptions-75.json` | Arrondissements et quartiers de chaque circonscription (découpage de 2010) |
+| `build.py` | Télécharge les données de l'Assemblée, calcule les statistiques, écrit `site/` |
+| `scripts/communes.py` | Construit `data/communes.json` (communes, codes postaux, circonscriptions). À relancer seulement si le découpage change |
+| `data/circonscriptions-75.json` | Arrondissements et quartiers de chaque circonscription de Paris (découpage de 2010) |
 | `static/assets/` | Style et scripts des pages |
 | `content/` | Pages de texte (méthode, mentions légales) |
 
-## Étendre à d'autres départements
-
-1. Ajouter le département dans `DEPARTEMENTS` dans `build.py`.
-2. Ajouter éventuellement un fichier `data/circonscriptions-XX.json` pour le choix par commune.
-3. Adapter la page d'accueil (`page_index`), aujourd'hui centrée sur Paris.
+Pages produites : `index.html` (recherche par commune ou code postal), `<dep>/index.html` (un département), `<dep>/<circo>/index.html` (un député).
 
 ## Sources
 
-- Députés et mandats : `AMO20_dep_sen_min_tous_mandats_et_organes.json.zip`
-- Scrutins : `Scrutins.json.zip`
+- Assemblée nationale : `AMO20_dep_sen_min_tous_mandats_et_organes.json.zip` et `Scrutins.json.zip` (data.assemblee-nationale.fr)
+- Ministère de l'Intérieur : résultats du 1er tour des législatives 2024 par circonscription et par bureau de vote (data.gouv.fr)
+- La Poste : base officielle des codes postaux
 
-Toutes deux sur https://data.assemblee-nationale.fr, sous Licence Ouverte.
+Toutes sous Licence Ouverte.
