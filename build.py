@@ -193,9 +193,10 @@ def badge(g):
     return f'<span class="grp"><i style="background:{escape(g["couleur"])}"></i>{escape(g["nom"])}</span>'
 
 
-def page(title, description, body, depth=0, scripts=()):
+def page(title, description, body, depth=0, scripts=(), styles=()):
     up = "../" * depth
-    tags = "".join(f'<script src="{up}assets/{s}" defer></script>' for s in scripts)
+    tags = "".join(f'<link rel="stylesheet" href="{up}assets/{s}">' for s in styles)
+    tags += "".join(f'<script src="{up}assets/{s}" defer></script>' for s in scripts)
     return f"""<!doctype html>
 <html lang="fr">
 <head>
@@ -206,9 +207,7 @@ def page(title, description, body, depth=0, scripts=()):
 <meta property="og:title" content="{escape(title)}">
 <meta property="og:description" content="{escape(description)}">
 <meta property="og:type" content="website">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="{up}assets/fonts.css">
 <link rel="stylesheet" href="{up}assets/style.css">
 {tags}
 </head>
@@ -315,6 +314,15 @@ def page_index(deputes, departements):
     liste = "".join(f'<a href="{c.lower()}/index.html"><span class="mono">{c}</span>{escape(d["nom"])}</a>'
                     for c, d in sorted(departements.items(), key=lambda x: ordre_dep(x[0])))
     index = {f'{d["dep"]}-{d["circo"]}': [d["nom"], d["groupe"]["sigle"], d["groupe"]["couleur"]] for d in deputes}
+    sieges = {}
+    for d in deputes:
+        sieges.setdefault(d["groupe"]["abrev"], [d["groupe"], 0])[1] += 1
+    legende = "".join(f'<li><span class="grp"><i style="background:{escape(g["couleur"])}"></i>{escape(g["nom"])}</span><span class="mono">{n}</span></li>'
+                      for g, n in sorted(sieges.values(), key=lambda x: GROUPES.index(x[0]["abrev"]) if x[0]["abrev"] in GROUPES else 99))
+    vacants = sum(d["circos"] for d in departements.values()) - len(deputes)
+    if vacants:
+        legende += f'<li><span class="grp"><i class="vide"></i>Sièges vacants</span><span class="mono">{vacants}</span></li>'
+    hors_carte = "".join(f'<a href="{c}/index.html">{escape(departements[c]["nom"])}</a>' for c in ("977", "986", "987", "988", "099") if c in departements)
     body = f"""
 <header class="hero">
   <div class="eyebrow">Les {len(deputes)} députés en fonction</div>
@@ -329,6 +337,28 @@ def page_index(deputes, departements):
   <p class="sub">Les Français de l'étranger peuvent taper leur ville de résidence. Pour une adresse précise, utilisez <a href="https://www.assemblee-nationale.fr/dyn/vos-deputes" target="_blank" rel="noopener">la recherche de l'Assemblée nationale</a>.</p>
 </section>
 <section>
+  <h2>La carte des circonscriptions</h2>
+  <p class="sub">Chaque circonscription a la couleur du groupe de son député. Touchez-en une pour voir qui la représente.</p>
+  <div class="vues" id="vues">
+    <button data-vue="metropole" aria-pressed="true">Métropole</button>
+    <button data-vue="paris" aria-pressed="false">Paris et petite couronne</button>
+    <button data-vue="971" aria-pressed="false">Guadeloupe</button>
+    <button data-vue="972" aria-pressed="false">Martinique</button>
+    <button data-vue="973" aria-pressed="false">Guyane</button>
+    <button data-vue="974" aria-pressed="false">La Réunion</button>
+    <button data-vue="976" aria-pressed="false">Mayotte</button>
+    <button data-vue="975" aria-pressed="false">Saint-Pierre-et-Miquelon</button>
+  </div>
+  <div class="carte-grille">
+    <div id="carte" class="carte" role="region" aria-label="Carte des circonscriptions"></div>
+    <div class="carte-cote">
+      <div id="carte-info" class="result"></div>
+      <ul class="legende">{legende}</ul>
+    </div>
+  </div>
+  <p class="sub">Hors de la carte : {hors_carte}.</p>
+</section>
+<section>
   <h2>Par département</h2>
   <div class="deps">{liste}</div>
 </section>
@@ -336,7 +366,7 @@ def page_index(deputes, departements):
 """
     return page(f"{SITE_NAME} · Comment vote votre député ?",
                 "Retrouvez les votes des 577 députés à l'Assemblée nationale, par commune ou code postal, d'après l'open data officiel.",
-                body, scripts=("index.js",))
+                body, scripts=("vendor/leaflet.js", "index.js", "carte.js"), styles=("vendor/leaflet.css",))
 
 
 def main():
@@ -356,6 +386,7 @@ def main():
     shutil.copytree(ROOT / "static", OUT, dirs_exist_ok=True)
     (OUT / "data" / "votes").mkdir(parents=True)
     shutil.copy(ROOT / "data" / "communes.json", OUT / "data" / "communes.json")
+    shutil.copy(ROOT / "data" / "carte.json", OUT / "data" / "carte.json")
 
     recent = sorted({s["date"] for s in scrutins})[-3:]
     (OUT / "data" / "scrutins.json").write_text(json.dumps({

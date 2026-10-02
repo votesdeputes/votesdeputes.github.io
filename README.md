@@ -25,6 +25,7 @@ Le site est publié anonymement : les commits utilisent une identité neutre (co
 | Chemin | Rôle |
 | --- | --- |
 | `build.py` | Télécharge les données de l'Assemblée, calcule les statistiques, écrit `site/` |
+| `scripts/carte.py` | Construit `data/carte.json` (contours simplifiés des circonscriptions). À relancer seulement si le découpage change |
 | `scripts/communes.py` | Construit `data/communes.json` (communes, codes postaux, circonscriptions). À relancer seulement si le découpage change |
 | `data/circonscriptions-75.json` | Arrondissements et quartiers de chaque circonscription de Paris (découpage de 2010) |
 | `static/assets/` | Style et scripts des pages |
@@ -37,5 +38,7 @@ Pages produites : `index.html` (recherche par commune ou code postal), `<dep>/in
 - Assemblée nationale : `AMO20_dep_sen_min_tous_mandats_et_organes.json.zip` et `Scrutins.json.zip` (data.assemblee-nationale.fr)
 - Ministère de l'Intérieur : résultats du 1er tour des législatives 2024 par circonscription et par bureau de vote (data.gouv.fr)
 - La Poste : base officielle des codes postaux
+- Contours des circonscriptions : « Contours géographiques des circonscriptions législatives » (data.gouv.fr, 2024)
+- Polices (SIL Open Font License) et Leaflet (licence BSD) hébergés dans `static/assets/`
 
 Toutes sous Licence Ouverte.

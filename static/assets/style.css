@@ -106,5 +106,21 @@ a.pick:hover{border-color:var(--accent)}
 .deps a{break-inside:avoid;display:flex;gap:10px;align-items:baseline;padding:5px 0;text-decoration:none;color:var(--fg);border-bottom:1px solid var(--line)}
 .deps a:hover{color:var(--accent)}
 .deps .mono{color:var(--muted);min-width:2.6rem}
+/* Carte des circonscriptions */
+.vues{display:flex;flex-wrap:wrap;gap:6px}
+.vues button{font:600 .86rem var(--f-body);border:1px solid var(--line);background:var(--surface);color:var(--fg);padding:5px 11px;border-radius:999px;cursor:pointer}
+.vues button[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.carte-grille{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:16px;align-items:start}
+.carte,.carte.leaflet-container{height:560px;border:1px solid var(--line);border-radius:10px;background:var(--surface);z-index:0}
+.carte .leaflet-control-attribution{background:var(--surface);color:var(--muted);font-size:.7rem}
+.carte .leaflet-control-attribution a{color:var(--accent)}
+.carte .leaflet-bar a{background:var(--surface);color:var(--fg);border-color:var(--line)}
+.carte-cote{display:grid;gap:14px;min-width:0}
+.legende{list-style:none;margin:0;padding:0;display:grid;gap:4px}
+.legende li{display:flex;justify-content:space-between;gap:10px;font-size:.88rem}
+.legende .grp{font-weight:400;font-size:.88rem}
+.grp i.vide{background:var(--abs-bg)}
+.leaflet-tooltip{font:.85rem var(--f-body)}
+@media (max-width:760px){.carte-grille{grid-template-columns:1fr}.carte,.carte.leaflet-container{height:420px}}
 @media (max-width:520px){.row{grid-template-columns:1fr}.row .vote{grid-row:auto;justify-self:start}.meta,details.groups{grid-column:1}.bar{grid-template-columns:4.6rem 1fr 3rem}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
