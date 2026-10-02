@@ -22,7 +22,7 @@ Puis ouvrir http://localhost:8765.
 
 Le site est alors en ligne sur `https://<compte>.github.io/<depot>/`. Pour un nom de domaine, voir **Settings → Pages → Custom domain**.
 
-**Avant la mise en ligne**, compléter `content/mentions-legales.html` (éditeur, contact, directeur de la publication).
+Le site est publié anonymement : les commits utilisent une identité neutre (configurée dans ce dépôt uniquement) et les mentions légales indiquent un éditeur non professionnel anonyme.
 
 ## Organisation
 
