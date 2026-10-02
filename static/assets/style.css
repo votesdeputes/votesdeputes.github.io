@@ -122,5 +122,16 @@ a.pick:hover{border-color:var(--accent)}
 .grp i.vide{background:var(--abs-bg)}
 .leaflet-tooltip{font:.85rem var(--f-body)}
 @media (max-width:760px){.carte-grille{grid-template-columns:1fr}.carte,.carte.leaflet-container{height:420px}}
+/* Votes par sujet */
+.sujets{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:8px}
+.sujet{display:grid;gap:6px;text-align:left;font:inherit;color:var(--fg);background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px;cursor:pointer}
+.sujet:hover{border-color:var(--accent)}
+.snom{font-weight:600}
+.stack{display:flex;height:10px;border-radius:5px;overflow:hidden;background:var(--abs-bg)}
+.stack i{display:block;height:100%}
+.s-p{background:var(--pour)}.s-c{background:var(--contre)}.s-a{background:var(--abst)}.s-x{background:var(--abs-bg)}
+.sdet{color:var(--muted);font-size:.74rem}
+.tools select{font:1rem var(--f-body);padding:9px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--fg);max-width:100%}
+.tag{font-size:.78rem;padding:1px 7px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
 @media (max-width:520px){.row{grid-template-columns:1fr}.row .vote{grid-row:auto;justify-self:start}.meta,details.groups{grid-column:1}.bar{grid-template-columns:4.6rem 1fr 3rem}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}

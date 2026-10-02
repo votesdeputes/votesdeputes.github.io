@@ -1,0 +1,373 @@
+{
+ "_note": "Classement automatique : un scrutin reçoit chaque thème dont au moins un mot-clé apparaît dans le titre du texte concerné (sans accents ni majuscules). Un texte peut avoir plusieurs thèmes. Les amendements héritent des thèmes de leur texte. Un mot-clé est cherché en début de mot (« agricol » trouve « agricole » et « agricoles »). La liste « sauf » retire une expression avant la recherche (« sécurité sociale » ne relève pas de « Sécurité et justice »).",
+ "themes": [
+  {
+   "id": "budget",
+   "nom": "Budget et impôts",
+   "mots": [
+    "loi de finances",
+    "fin de gestion",
+    "loi speciale",
+    "resultats de la gestion",
+    "impot",
+    "fiscal",
+    "operateurs de l'etat",
+    "patrimoine immobilier de l'etat",
+    "agencification",
+    "fraudes aux aides publiques"
+   ]
+  },
+  {
+   "id": "protection-sociale",
+   "nom": "Sécurité sociale et retraites",
+   "mots": [
+    "securite sociale",
+    "retraite",
+    "fraudes sociales",
+    "allocations familiales",
+    "prestations familiales",
+    "pensions",
+    "protection sociale",
+    "assurance chomage",
+    "assurance maladie",
+    "retraites pauvres"
+   ]
+  },
+  {
+   "id": "sante",
+   "nom": "Santé et fin de vie",
+   "mots": [
+    "aide a mourir",
+    "soins palliatifs",
+    "sante",
+    "medecin",
+    "hopita",
+    "cancer",
+    "maladie",
+    "infirmier",
+    "soignants",
+    "orthophonistes",
+    "mortalite infantile",
+    "cardio",
+    "vapotage",
+    "protoxyde",
+    "chemsex",
+    "immunodeficience",
+    "tabac",
+    "fauteuils roulants",
+    "deserts medicaux",
+    "suicidaire",
+    "collectes de sang",
+    "centre hospitalier",
+    "sclerose",
+    "perfluoro",
+    "cadmium",
+    "sucres ajoutes"
+   ],
+   "sauf": [
+    "maladies affectant les cultures"
+   ]
+  },
+  {
+   "id": "travail-economie",
+   "nom": "Travail, économie et consommation",
+   "mots": [
+    "emploi",
+    "salaries",
+    "chomage",
+    "dialogue social",
+    "contrat de professionnalisation",
+    "1er mai",
+    "vie economique",
+    "micro-entrepreneurs",
+    "commercants",
+    "baux commerciaux",
+    "creances commerciales",
+    "commande publique",
+    "nationalisation",
+    "industri",
+    "titres restaurant",
+    "frais bancaires",
+    "comptes bancaires",
+    "consommateur",
+    "demarchage",
+    "moyens de paiement",
+    "vie chere",
+    "concentration des acteurs economiques",
+    "travail"
+   ]
+  },
+  {
+   "id": "logement",
+   "nom": "Logement et urbanisme",
+   "mots": [
+    "logement",
+    "locati",
+    "loyers",
+    "habitat",
+    "urbanisme",
+    "copropriete",
+    "ascenceur",
+    "ascenseur",
+    "meubles de tourisme",
+    "sans-abrisme",
+    "indivision",
+    "indivison",
+    "assainissement cadastral"
+   ]
+  },
+  {
+   "id": "environnement",
+   "nom": "Climat, énergie et environnement",
+   "mots": [
+    "energie",
+    "climat",
+    "eau potable",
+    "hydroelectricite",
+    "charbon",
+    "pollution",
+    "environnement",
+    "plastique",
+    "perfluoro",
+    "inondations",
+    "textile",
+    "velique",
+    "hydrocarbures",
+    "assainissement",
+    "chlordecone",
+    "ocean",
+    "transition ecologique"
+   ],
+   "sauf": [
+    "assainissement cadastral"
+   ]
+  },
+  {
+   "id": "agriculture",
+   "nom": "Agriculture et alimentation",
+   "mots": [
+    "agricol",
+    "agricult",
+    "alimentation",
+    "alimentaire",
+    "denrees",
+    "vignes",
+    "vignoble",
+    "apicole",
+    "frelon",
+    "cultures vegetales",
+    "agroalimentaire",
+    "sucres ajoutes",
+    "mercosur",
+    "normes de production",
+    "cadmium",
+    "montagne"
+   ]
+  },
+  {
+   "id": "securite-justice",
+   "nom": "Sécurité et justice",
+   "mots": [
+    "securite",
+    "ordre public",
+    "narcotrafic",
+    "criminalit",
+    "juridictions criminelles",
+    "justice",
+    "peines",
+    "recidive",
+    "legitime defense",
+    "rave-parties",
+    "attentat",
+    "delinquants",
+    "autorite de l'etat",
+    "procureur",
+    "avoirs saisis",
+    "detenus",
+    "privation de liberte",
+    "homicide routier",
+    "insecurite routiere",
+    "surete",
+    "incendie et de secours",
+    "sapeurs-pompiers",
+    "securite civile",
+    "nullites",
+    "terroristes",
+    "pedocriminalite",
+    "agresseur",
+    "plainte"
+   ],
+   "sauf": [
+    "securite sociale",
+    "sante et la securite des travailleurs",
+    "securite et la sante des travailleurs",
+    "mesures de justice",
+    "detenus par l'azerbaidjan"
+   ]
+  },
+  {
+   "id": "immigration",
+   "nom": "Immigration et nationalité",
+   "mots": [
+    "sejour",
+    "etrangers",
+    "nationalite",
+    "retention administrative",
+    "mariages simules",
+    "franco-algeriens",
+    "expulsion",
+    "circulation des personnes"
+   ]
+  },
+  {
+   "id": "education",
+   "nom": "Éducation, enfance et jeunesse",
+   "mots": [
+    "enfant",
+    "ecole",
+    "scolaire",
+    "etudiant",
+    "enseignement",
+    "mineurs",
+    "creches",
+    "petite enfance",
+    "egalite des chances",
+    "bourses",
+    "pedagogiques",
+    "nourissons",
+    "jeune public",
+    "tiktok",
+    "parcours de citoyennete",
+    "reseaux sociaux des mineurs"
+   ]
+  },
+  {
+   "id": "egalite-droits",
+   "nom": "Égalité, droits et discriminations",
+   "mots": [
+    "violences sexuelles",
+    "violences sexistes",
+    "sexistes et sexuelles",
+    "devoir conjugal",
+    "homosexualite",
+    "avortement",
+    "antisemitisme",
+    "racisme",
+    "discriminations",
+    "femmes",
+    "parite",
+    "incestueuses",
+    "culpabilisation des victimes",
+    "projet parental",
+    "penale du viol",
+    "violences commises dans les secteurs"
+   ]
+  },
+  {
+   "id": "institutions",
+   "nom": "Institutions et élections",
+   "mots": [
+    "droit de vote",
+    "election",
+    "scrutin",
+    "elu local",
+    "mandat d'elu",
+    "corps electoral",
+    "reglement de l'assemblee",
+    "parlement",
+    "motion de censure",
+    "declaration du gouvernement",
+    "declaration de politique generale",
+    "loi constitutionnelle",
+    "eligibilite",
+    "millefeuille territorial",
+    "collectivite unique",
+    "grand debat",
+    "candidats",
+    "commune nouvelle",
+    "suspension de seance",
+    "affaires courantes",
+    "commission d'enquete"
+   ]
+  },
+  {
+   "id": "territoires",
+   "nom": "Territoires, ruralité et outre-mer",
+   "mots": [
+    "mayotte",
+    "outre-mer",
+    "martinique",
+    "guyane",
+    "la reunion",
+    "wallis",
+    "nouvelle-caledonie",
+    "polynesie",
+    "caraibes",
+    "chlordecone",
+    "kali'nas",
+    "essais nucleaires",
+    "ultramarins",
+    "corse",
+    "montagne",
+    "rural",
+    "communes",
+    "collectivites territoriales",
+    "autoroutiere",
+    "service public postal",
+    "ports"
+   ]
+  },
+  {
+   "id": "international",
+   "nom": "Europe, international et défense",
+   "mots": [
+    "europeenne",
+    "union europeenne",
+    "defense",
+    "militaire",
+    "ukraine",
+    "ratification",
+    "approbation de l'accord",
+    "approbation de la convention",
+    "nations unies",
+    "armeniens",
+    "iraniennes",
+    "haiti",
+    "turquie",
+    "georgie",
+    "groenland",
+    "sansal",
+    "droits de douane",
+    "etats-unis",
+    "brexit",
+    "parquet europeen",
+    "mercosur",
+    "djibouti"
+   ],
+   "sauf": [
+    "legitime defense"
+   ]
+  },
+  {
+   "id": "culture",
+   "nom": "Culture, médias, sport et mémoire",
+   "mots": [
+    "audiovisuel",
+    "medias",
+    "presse",
+    "biens culturels",
+    "bien culturel",
+    "restes humains",
+    "sport",
+    "jeux olympiques",
+    "cinema",
+    "dreyfus",
+    "code noir",
+    "rapatries",
+    "reparer les prejudices",
+    "double dette",
+    "reconnaissance de la nation"
+   ]
+  }
+ ]
+}

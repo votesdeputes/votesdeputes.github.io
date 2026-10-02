@@ -13,8 +13,10 @@ data/communes.json est produit par scripts/communes.py (à relancer seulement si
 """
 import io
 import json
+import re
 import shutil
 import sys
+import unicodedata
 import urllib.request
 import zipfile
 from datetime import date
@@ -38,6 +40,40 @@ GROUPES = ["LFI-NFP", "GDR", "ECOS", "SOC", "LIOT", "DEM", "EPR", "HOR", "DR", "
 # Sigles d'usage quand celui de l'open data diffère.
 SIGLES = {"ECOS": "EcoS", "DEM": "Dem", "UDDPLR": "UDR", "NI": "NI"}
 POS = {"pour": "p", "contre": "c", "abstention": "a", "nonVotant": "n"}
+
+
+TEXTE = re.compile(r"((?:projet|proposition) de (?:loi|résolution).*)", re.I)
+
+
+def norm(s):
+    s = unicodedata.normalize("NFD", s.replace("’", "'")).encode("ascii", "ignore").decode()
+    return " ".join(s.lower().split())
+
+
+def texte_de(titre):
+    """Le texte de loi visé par un scrutin (« l'amendement n° 12 … du projet de loi X » → « projet de loi X »)."""
+    m = TEXTE.search(titre.replace("’", "'"))
+    return m.group(1) if m else titre
+
+
+def charge_themes():
+    themes = json.loads((ROOT / "data" / "themes.json").read_text(encoding="utf-8"))["themes"]
+    for th in themes:
+        th["re"] = re.compile("|".join(r"(?<![a-z])" + re.escape(norm(m)) for m in th["mots"]))
+        th["sauf_n"] = [norm(s) for s in th.get("sauf", [])]
+    return themes
+
+
+def themes_de(titre, themes):
+    base = norm(texte_de(titre))
+    ids = []
+    for th in themes:
+        s = base
+        for sauf in th["sauf_n"]:
+            s = s.replace(sauf, " ")
+        if th["re"].search(s):
+            ids.append(th["id"])
+    return ids
 
 
 def as_list(x):
@@ -114,7 +150,7 @@ def load_deputes(amo, groupes, partis):
     return sorted(deputes, key=lambda d: (d["dep"], d["circo"]))
 
 
-def load_scrutins(scr, groupes):
+def load_scrutins(scr, groupes, themes):
     scrutins = []
     for doc in read_json(scr, "json/"):
         s = doc["scrutin"]
@@ -139,6 +175,7 @@ def load_scrutins(scr, groupes):
             "dec": [int(dec["pour"]), int(dec["contre"]), int(dec["abstentions"])],
             "solennel": 1 if code == "SPS" else 0,
             "gpos": "".join(gpos.get(g, "-") for g in GROUPES),
+            "themes": themes_de(titre, themes),
             "votes": votes,
         })
     return sorted(scrutins, key=lambda s: s["n"])
@@ -254,6 +291,11 @@ def page_depute(d, st, zones):
   <div class="bars" id="bars"></div>
 </section>
 <section>
+  <h2>Ses votes par sujet</h2>
+  <p class="sub">Ses positions sur l'ensemble des textes de chaque sujet (vote final). Touchez un sujet pour voir le détail de ses votes, amendements compris.</p>
+  <div class="sujets" id="sujets"><p class="sub">Chargement…</p></div>
+</section>
+<section id="registre">
   <h2>Ses votes, scrutin par scrutin</h2>
   <div class="tabs" role="tablist" id="tabs">
     <button role="tab" data-cat="e" aria-selected="true">Votes sur l'ensemble d'un texte</button>
@@ -262,6 +304,7 @@ def page_depute(d, st, zones):
     <button role="tab" data-cat="all" aria-selected="false">Tous ses votes</button>
   </div>
   <div class="tools">
+    <select id="theme" aria-label="Filtrer par sujet"><option value="">Tous les sujets</option></select>
     <input type="search" id="q" placeholder="Chercher un mot : retraites, logement, budget…" aria-label="Chercher dans les scrutins">
     <span class="count" id="count"></span>
   </div>
@@ -373,7 +416,12 @@ def main():
     zips = fetch("--refresh" in sys.argv)
     groupes, partis = load_organes(zips["amo"])
     deputes = load_deputes(zips["amo"], groupes, partis)
-    scrutins = load_scrutins(zips["scrutins"], groupes)
+    themes = charge_themes()
+    scrutins = load_scrutins(zips["scrutins"], groupes, themes)
+    sans = {texte_de(s["titre"])[:120] for s in scrutins if not s["themes"]}
+    print(f"{sum(1 for s in scrutins if s['themes'])}/{len(scrutins)} scrutins classés ; textes sans thème : {len(sans)}")
+    for x in sorted(sans):
+        print("   ", x)
     communes = json.loads((ROOT / "data" / "communes.json").read_text(encoding="utf-8"))
     departements = communes["departements"]
     decoupages = {"75": json.loads((ROOT / "data" / "circonscriptions-75.json").read_text(encoding="utf-8"))["arrondissements"]}
@@ -389,11 +437,14 @@ def main():
     shutil.copy(ROOT / "data" / "carte.json", OUT / "data" / "carte.json")
 
     recent = sorted({s["date"] for s in scrutins})[-3:]
+    ids = [th["id"] for th in themes]
     (OUT / "data" / "scrutins.json").write_text(json.dumps({
         "groupes": GROUPES,
         "infos": {g["abrev"]: {"sigle": g["sigle"], "couleur": g["couleur"]} for g in groupes.values() if g["abrev"] in GROUPES},
         "derniersJours": recent,
-        "rows": [[s["n"], s["date"], s["cat"], s["titre"], s["adopte"], s["dec"], s["solennel"], s["gpos"]] for s in scrutins],
+        "themes": [{"id": th["id"], "nom": th["nom"]} for th in themes],
+        "rows": [[s["n"], s["date"], s["cat"], s["titre"], s["adopte"], s["dec"], s["solennel"], s["gpos"],
+                  [ids.index(i) for i in s["themes"]]] for s in scrutins],
     }, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
 
     for d in deputes:
