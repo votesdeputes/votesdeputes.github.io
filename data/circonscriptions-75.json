@@ -1,0 +1,66 @@
+{
+  "_source": "Ordonnance n° 2009-935 du 29 juillet 2009 (découpage en vigueur depuis 2012)",
+  "arrondissements": {
+    "1": [{"circo": 1, "zone": "Tout l'arrondissement"}],
+    "2": [{"circo": 1, "zone": "Tout l'arrondissement"}],
+    "3": [{"circo": 5, "zone": "Tout l'arrondissement"}],
+    "4": [{"circo": 7, "zone": "Tout l'arrondissement"}],
+    "5": [{"circo": 2, "zone": "Tout l'arrondissement"}],
+    "6": [
+      {"circo": 2, "zone": "Quartiers de la Monnaie, de l'Odéon et de Saint-Germain-des-Prés"},
+      {"circo": 11, "zone": "Quartier Notre-Dame-des-Champs"}
+    ],
+    "7": [
+      {"circo": 2, "zone": "Quartiers du Gros-Caillou, des Invalides et de Saint-Thomas-d'Aquin"},
+      {"circo": 12, "zone": "Quartier de l'École-Militaire"}
+    ],
+    "8": [{"circo": 1, "zone": "Tout l'arrondissement"}],
+    "9": [
+      {"circo": 1, "zone": "Quartiers de la Chaussée-d'Antin, du Faubourg-Montmartre, Saint-Georges, et Rochechouart au sud des rues Condorcet et de Maubeuge"},
+      {"circo": 18, "zone": "Quartier de Rochechouart au nord des rues Condorcet et de Maubeuge"}
+    ],
+    "10": [{"circo": 5, "zone": "Tout l'arrondissement"}],
+    "11": [
+      {"circo": 6, "zone": "Est de l'arrondissement, à l'est de la ligne rue de la Folie-Méricourt, rue de la Fontaine-au-Roi, avenue Parmentier, rue du Chemin-Vert, rue Saint-Maur, rue Léon-Frot, rue de Charonne, rue Faidherbe"},
+      {"circo": 7, "zone": "Ouest de l'arrondissement, à l'ouest de cette même ligne"}
+    ],
+    "12": [
+      {"circo": 7, "zone": "Quartier des Quinze-Vingts"},
+      {"circo": 8, "zone": "Quartiers de Picpus, du Bel-Air et de Bercy"}
+    ],
+    "13": [
+      {"circo": 9, "zone": "Quartiers de la Salpêtrière, de la Gare et de Croulebarbe"},
+      {"circo": 10, "zone": "Quartier de la Maison-Blanche"}
+    ],
+    "14": [
+      {"circo": 10, "zone": "Sud de l'arrondissement, au sud de l'axe avenue Reille, rue Beaunier, rue de Coulmiers, rue Auguste-Cain, rue des Plantes, rue d'Alésia"},
+      {"circo": 11, "zone": "Quartier du Montparnasse et nord de l'arrondissement, au nord de ce même axe"}
+    ],
+    "15": [
+      {"circo": 12, "zone": "Quartiers Necker et de Grenelle, et Saint-Lambert au nord des rues Léon-Lhermitte, Petel, Maublanc, de Vaugirard, Paul-Barruel, Saint-Amand et de Vouillé"},
+      {"circo": 13, "zone": "Quartier de Javel, et Saint-Lambert au sud de ces mêmes rues"}
+    ],
+    "16": [
+      {"circo": 4, "zone": "Quartier de Chaillot, et Porte-Dauphine au nord des rues de la Pompe et Saint-Didier"},
+      {"circo": 14, "zone": "Quartiers d'Auteuil et de la Muette, et Porte-Dauphine au sud des rues de la Pompe et Saint-Didier"}
+    ],
+    "17": [
+      {"circo": 3, "zone": "Quartiers des Batignolles et des Épinettes"},
+      {"circo": 4, "zone": "Quartiers des Ternes et de la Plaine-de-Monceaux"}
+    ],
+    "18": [
+      {"circo": 3, "zone": "Grandes-Carrières à l'ouest et au nord de l'avenue de la Porte-de-Montmartre, du boulevard Ney, de la rue du Ruisseau et de la rue Marcadet"},
+      {"circo": 17, "zone": "Quartiers de la Goutte-d'Or et de la Chapelle"},
+      {"circo": 18, "zone": "Quartier de Clignancourt, et Grandes-Carrières à l'est et au sud de ces mêmes voies"}
+    ],
+    "19": [
+      {"circo": 16, "zone": "Quartiers d'Amérique et du Pont-de-Flandre, et Combat à l'est de l'avenue Secrétan, de l'avenue Simon-Bolivar et de la rue Henri-Turot"},
+      {"circo": 17, "zone": "Quartier de la Villette, et Combat à l'ouest de ces mêmes voies"}
+    ],
+    "20": [
+      {"circo": 6, "zone": "Ouest des quartiers de Belleville et du Père-Lachaise, à l'ouest de la ligne rue Piat, rue des Envierges, rue Levert, rue des Pyrénées, rue de Bagnolet, boulevard de Charonne, place des Antilles"},
+      {"circo": 8, "zone": "Sud du quartier de Charonne, au sud de l'axe avenue de la Porte-de-Montreuil, rue d'Avron, rue des Pyrénées, rue de la Plaine, boulevard de Charonne"},
+      {"circo": 15, "zone": "Quartier Saint-Fargeau, est de Belleville et du Père-Lachaise, nord de Charonne"}
+    ]
+  }
+}
