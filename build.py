@@ -182,6 +182,13 @@ def ordinal(n):
     return f"{n}{'re' if n == 1 else 'e'}"
 
 
+def ordre_dep(code):
+    """Ordre officiel : 01 à 95 (la Corse entre 19 et 21), outre-mer, puis Français de l'étranger."""
+    if code == "099":
+        return 9999
+    return {"2A": 20.1, "2B": 20.2}.get(code) or int(code)
+
+
 def badge(g):
     return f'<span class="grp"><i style="background:{escape(g["couleur"])}"></i>{escape(g["nom"])}</span>'
 
@@ -306,7 +313,7 @@ def page_departement(code, nom, nb_circos, deputes, decoupage):
 
 def page_index(deputes, departements):
     liste = "".join(f'<a href="{c.lower()}/index.html"><span class="mono">{c}</span>{escape(d["nom"])}</a>'
-                    for c, d in sorted(departements.items(), key=lambda x: x[1]["nom"]))
+                    for c, d in sorted(departements.items(), key=lambda x: ordre_dep(x[0])))
     index = {f'{d["dep"]}-{d["circo"]}': [d["nom"], d["groupe"]["sigle"], d["groupe"]["couleur"]] for d in deputes}
     body = f"""
 <header class="hero">

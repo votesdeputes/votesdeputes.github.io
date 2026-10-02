@@ -102,8 +102,8 @@ a.pick:hover{border-color:var(--accent)}
 .card .grp{font-weight:400;font-size:.9rem;color:var(--muted)}
 .card.vacant{border-style:dashed;background:transparent}
 .card.vacant span:last-child{color:var(--muted);font-size:.9rem}
-.deps{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:2px 16px}
-.deps a{display:flex;gap:10px;align-items:baseline;padding:5px 0;text-decoration:none;color:var(--fg);border-bottom:1px solid var(--line)}
+.deps{columns:220px 4;column-gap:24px}
+.deps a{break-inside:avoid;display:flex;gap:10px;align-items:baseline;padding:5px 0;text-decoration:none;color:var(--fg);border-bottom:1px solid var(--line)}
 .deps a:hover{color:var(--accent)}
 .deps .mono{color:var(--muted);min-width:2.6rem}
 @media (max-width:520px){.row{grid-template-columns:1fr}.row .vote{grid-row:auto;justify-self:start}.meta,details.groups{grid-column:1}.bar{grid-template-columns:4.6rem 1fr 3rem}}
