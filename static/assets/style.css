@@ -2,8 +2,9 @@
 :root{
   --bg:#f5f6f8; --surface:#ffffff; --fg:#1b2130; --muted:#5d6577; --line:#dfe2e9;
   --accent:#2a4fb8; --accent-soft:#e6ecfb;
-  --pour:#1f7a4d; --pour-bg:#e3f3ea; --contre:#b3322b; --contre-bg:#fbe7e5;
-  --abst:#9a6a00; --abst-bg:#fbf1d9; --abs:#6b7280; --abs-bg:#eceef2;
+  /* Pour et contre en bleu et orange : ni vert ni rouge, pour ne pas suggérer qu'un vote est bon ou mauvais. */
+  --pour:#1f5fb0; --pour-bg:#e2ecfa; --contre:#a85400; --contre-bg:#fbead6;
+  --abst:#6d4fa3; --abst-bg:#ece6f7; --abs:#6b7280; --abs-bg:#eceef2;
   --f-display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
   --f-body:"Source Sans 3",ui-sans-serif,system-ui,sans-serif;
   --f-mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
@@ -12,8 +13,8 @@
 @media (prefers-color-scheme:dark){:root{
   --bg:#12151c; --surface:#1a1e28; --fg:#e8eaf0; --muted:#9aa1b2; --line:#2b3140;
   --accent:#8aa7ff; --accent-soft:#232c45;
-  --pour:#5fcf95; --pour-bg:#163325; --contre:#ff8a80; --contre-bg:#3a1c1a;
-  --abst:#f2c25a; --abst-bg:#352a10; --abs:#a3a9b6; --abs-bg:#262b36; color-scheme:dark}}
+  --pour:#7fb2ff; --pour-bg:#16283f; --contre:#ffb066; --contre-bg:#3a2710;
+  --abst:#c3a6f2; --abst-bg:#2a2140; --abs:#a3a9b6; --abs-bg:#262b36; color-scheme:dark}}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 var(--f-body);padding-inline:16px;padding-block:20px 48px}
@@ -72,7 +73,7 @@ ol.list{list-style:none;margin:0;padding:0;display:grid;border-top:1px solid var
 .v-c{background:var(--contre-bg);color:var(--contre)}
 .v-a{background:var(--abst-bg);color:var(--abst)}
 .v-x,.v-n{background:var(--abs-bg);color:var(--abs)}
-.res-1{color:var(--pour);font-weight:600}.res-0{color:var(--contre);font-weight:600}
+.res-1,.res-0{color:var(--fg);font-weight:600}
 details.groups{grid-column:2}
 details.groups summary{cursor:pointer;color:var(--accent);font-size:.86rem}
 .gp{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
