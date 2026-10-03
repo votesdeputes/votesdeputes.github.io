@@ -448,6 +448,12 @@ def main():
     shutil.copy(ROOT / "data" / "communes.json", OUT / "data" / "communes.json")
     shutil.copy(ROOT / "data" / "carte.json", OUT / "data" / "carte.json")
 
+    # Résumés « Ce que fait ce texte », affichés sous les votes sur l'ensemble d'un texte.
+    resumes = json.loads((ROOT / "data" / "resumes.json").read_text(encoding="utf-8"))["resumes"]
+    for s in scrutins:
+        cle = cle_texte(s["titre"])
+        s["resume"] = next((i for i, r in enumerate(resumes) if r["cle"] in cle), -1) if s["cat"] == "e" else -1
+    print(f"{sum(1 for s in scrutins if s['resume'] >= 0)} votes finaux avec résumé sur {sum(1 for s in scrutins if s['cat'] == 'e')}")
     recent = sorted({s["date"] for s in scrutins})[-3:]
     ids = [th["id"] for th in themes]
     (OUT / "data" / "scrutins.json").write_text(json.dumps({
@@ -455,8 +461,9 @@ def main():
         "infos": {g["abrev"]: {"sigle": g["sigle"], "couleur": g["couleur"]} for g in groupes.values() if g["abrev"] in GROUPES},
         "derniersJours": recent,
         "themes": [{"id": th["id"], "nom": th["nom"]} for th in themes],
+        "resumes": [[r["resume"], r.get("source", "")] for r in resumes],
         "rows": [[s["n"], s["date"], s["cat"], s["titre"], s["adopte"], s["dec"], s["solennel"], s["gpos"],
-                  [ids.index(i) for i in s["themes"]]] for s in scrutins],
+                  [ids.index(i) for i in s["themes"]], s["resume"]] for s in scrutins],
     }, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
 
     for d in deputes:

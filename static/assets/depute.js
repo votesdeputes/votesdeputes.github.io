@@ -12,7 +12,7 @@
   const nq = s => s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
   const $ = id => document.getElementById(id);
 
-  let rows = [], groupes = [], infos = {}, dates = [], votes = {}, themes = [], cat = "e", shown = 60;
+  let rows = [], groupes = [], infos = {}, dates = [], votes = {}, themes = [], resumes = [], cat = "e", shown = 60;
   const enMandat = r => D.periodes.some(([a, b]) => a <= r[1] && r[1] <= b);
   const sigle = g => (infos[g] && infos[g].sigle) || g;
   const NOTES = {
@@ -67,9 +67,11 @@
       let [, cls] = VL[v], lab = VOTE[v];
       if (r[2] === "m" && !v) lab = "N'a pas censuré";
       const tags = r[8].length ? `<span class="sujets-tags">Sujets concernés : ${r[8].map(i => `<span class="tag">${esc(themes[i].nom)}</span>`).join("")}</span>` : "";
+      const res = resumes[r[9]];
+      const resume = res ? `<div class="resume"><b>Ce que fait ce texte.</b> ${esc(res[0])}${res[1] ? ` <a href="${esc(res[1])}" target="_blank" rel="noopener">Source</a>` : ""}</div>` : "";
       const gp = r[7].split("").map((p, i) => p === "-" ? "" :
         `<span class="chip ${VL[p][1]}">${esc(sigle(groupes[i]))} · ${VL[p][0].toLowerCase()}</span>`).join("");
-      return `<li class="row"><span class="chip vote ${cls}">${lab}</span><div class="t">${esc(r[3])}</div>
+      return `<li class="row"><span class="chip vote ${cls}">${lab}</span><div class="t">${esc(r[3])}${resume}</div>
         <div class="meta"><span>${fdate(r[1])}</span><span class="res-${r[4]}">${r[4] ? "Adopté" : "Rejeté"}</span><span class="mono">${fmt(r[5][0])} pour · ${fmt(r[5][1])} contre · ${fmt(r[5][2])} abst.</span>${r[6] ? "<span>Scrutin solennel</span>" : ""}${tags}<a href="https://www.assemblee-nationale.fr/dyn/17/scrutins/${r[0]}" target="_blank" rel="noopener">Scrutin n° ${r[0]}</a></div>
         ${r[2] !== "m" ? `<details class="groups"><summary>Position des groupes</summary><div class="gp">${gp}</div></details>` : ""}</li>`;
     }).join("") : `<li class="empty">Aucun scrutin ne correspond à cette recherche.</li>`;
@@ -99,7 +101,7 @@
     fetch(`${root}data/scrutins.json?v=${document.body.dataset.v}`).then(r => r.json()),
     fetch(`${root}data/votes/${D.id}.txt?v=${document.body.dataset.v}`).then(r => r.text())
   ]).then(([s, v]) => {
-    rows = s.rows; groupes = s.groupes; infos = s.infos; dates = s.derniersJours; themes = s.themes || [];
+    rows = s.rows; groupes = s.groupes; infos = s.infos; dates = s.derniersJours; themes = s.themes || []; resumes = s.resumes || [];
     $("theme").insertAdjacentHTML("beforeend", themes.map((th, i) => `<option value="${i}">${esc(th.nom)}</option>`).join(""));
     for (const [, n, code] of v.matchAll(/(\d+)([pcan])/g)) votes[n] = code;
     NOTES.r = "Les scrutins des trois derniers jours de séance : " + dates.slice().reverse().map(fdate).join(", ") + ".";
