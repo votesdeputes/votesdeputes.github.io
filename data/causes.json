@@ -1,0 +1,29 @@
+{
+  "_note": "Chaque cause est une question claire. Les votes classés pour chaque cause sont dans data/causes/<id>-*.tsv : numéro du scrutin, sens (+ : adopter ce texte ou cet amendement fait avancer la cause ; - : le faire adopter la fait reculer) et une phrase qui dit ce que le texte change. Un député qui vote pour un amendement « + » vote pour la cause ; s'il vote contre, il vote contre la cause. C'est l'inverse pour un amendement « - ».",
+  "causes": [
+    {
+      "id": "fossiles",
+      "titre": "Sortir des énergies fossiles",
+      "question": "Les députés votent-ils pour réduire notre consommation de pétrole, de gaz et de charbon ?",
+      "pour": "Pour la sortie des énergies fossiles",
+      "contre": "Contre la sortie des énergies fossiles",
+      "intro": "Taxer le kérosène et les jets privés, supprimer les niches fiscales des carburants, développer les énergies renouvelables, rénover les logements mal isolés, garder les zones à faibles émissions : ce sont les leviers pour moins dépendre du pétrole, du gaz et du charbon, premiers responsables du réchauffement climatique."
+    },
+    {
+      "id": "riches",
+      "titre": "Taxer les ultra-riches",
+      "question": "Les députés votent-ils pour faire contribuer davantage les plus grandes fortunes et les plus hauts revenus ?",
+      "pour": "Pour taxer les ultra-riches",
+      "contre": "Contre la taxation des ultra-riches",
+      "intro": "Impôt sur la fortune, taxe Zucman sur les patrimoines de plus de 100 millions d'euros, taxation des dividendes, des gros héritages et des superprofits, fin des niches fiscales qui profitent surtout aux plus aisés : ce sont les moyens de faire contribuer davantage ceux qui ont le plus."
+    },
+    {
+      "id": "sante",
+      "titre": "Protéger la santé",
+      "question": "Les députés votent-ils pour protéger la santé face aux pesticides, aux polluants, à l'alcool et au tabac, et pour l'accès aux soins ?",
+      "pour": "Pour protéger la santé",
+      "contre": "Contre la protection de la santé",
+      "intro": "Interdire les pesticides dangereux et protéger l'eau potable, taxer les pollueurs aux PFAS, limiter le sucre, l'alcool et le tabac, garantir assez de soignants à l'hôpital et lutter contre les déserts médicaux : ce sont les leviers pour protéger la santé de toutes et tous."
+    }
+  ]
+}

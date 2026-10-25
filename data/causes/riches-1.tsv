@@ -1,0 +1,235 @@
+10	+	Crée un impôt sur le revenu à 14 tranches, plus progressif
+13	+	Crée un taux d'imposition minimum adossé au patrimoine des plus fortunés
+14	+	Crée la taxe Zucman : 2 % minimum sur les patrimoines de plus de 100 millions d'euros
+15	+	Calcule la contribution des hauts revenus sur le patrimoine plutôt que sur le revenu
+16	+	Calcule la contribution des hauts revenus sur le patrimoine plutôt que sur le revenu
+18	+	Relève de 20 % à 40 % l'imposition minimale des plus hauts revenus
+19	+	Relève de 20 % à 30 % l'imposition minimale des plus hauts revenus
+22	+	Crée un impôt universel pour taxer les exilés fiscaux
+33	+	Relève de 10 points la « flat tax » sur les revenus du capital
+34	+	Relève de 5 points la « flat tax » sur les revenus du capital
+35	+	Relève de 3 points la « flat tax » sur les revenus du capital
+37	+	Lutte contre les montages d'évitement de l'impôt sur les dividendes (« CumCum »)
+38	+	Lutte contre les montages d'évitement de l'impôt sur les dividendes (« CumCum »)
+45	+	Taxe chaque année les plus-values financières
+48	+	Limite l'avantage fiscal du pacte Dutreil sur les transmissions d'entreprise
+53	+	Supprime une niche fiscale sur les placements dans l'innovation
+72	+	Renforce la contribution exceptionnelle sur les hauts revenus
+73	+	Triple la contribution exceptionnelle sur les hauts revenus
+74	+	Taxe davantage les gros héritages
+76	-	Double les abattements sur les donations aux neveux, nièces et beaux-enfants
+78	-	Facilite la transmission anticipée des contrats d'assurance-vie
+79	-	Crée un abattement de 100 000 € sur les donations aux enfants du conjoint
+80	+	Réduit l'exonération du pacte Dutreil au-delà de 50 millions d'euros
+81	+	Empêche le cumul de deux niches fiscales dans le pacte Dutreil
+82	+	Encadre le pacte Dutreil pour les gros patrimoines
+84	+	Rétablit un impôt sur la fortune (ISF) climatique
+85	+	Rétablit un impôt sur la fortune (ISF) renforcé
+86	+	Rétablit un impôt sur la fortune (ISF) renforcé
+87	+	Rétablit l'impôt sur la fortune (ISF)
+88	+	Rétablit l'impôt sur la fortune (ISF) avec une composante climatique
+89	+	Crée un impôt sur la très grande fortune (taxe Zucman)
+90	+	Élargit l'impôt sur la fortune immobilière aux placements financiers et aux biens de luxe
+92	+	Élargit l'impôt sur la fortune immobilière aux liquidités et à l'assurance-vie
+93	+	Plafonne l'abattement sur la résidence principale dans l'impôt sur la fortune immobilière
+94	+	Taxe davantage l'assurance-vie au moment de la succession
+96	+	Augmente la taxe sur les plus-values immobilières élevées
+114	+	Taxe la rente des producteurs d'électricité
+115	+	Renforce la contribution sur la rente des producteurs d'électricité
+119	+	Prolonge la contribution exceptionnelle des grandes entreprises
+120	+	Crée une contribution exceptionnelle sur les bénéfices des très grandes entreprises
+122	+	Relève la contribution exceptionnelle des très grandes entreprises
+132	+	Renforce la taxe sur les rachats d'actions
+171	+	Rend non déductibles les dépenses des entreprises pour les jets privés
+175	+	Crée une contribution de 10 % sur les dividendes du CAC 40
+176	+	Soumet les holdings à l'impôt sur les sociétés sur leurs bénéfices spéculatifs
+188	+	Taxe les superprofits pour financer les retraites
+267	+	Taxe les multinationales sur les bénéfices réellement réalisés en France
+277	+	Taxe les superprofits des banques
+297	+	Taxe les superprofits des compagnies pétrolières et gazières
+298	+	Taxe les superprofits des compagnies pétrolières et gazières (repli)
+355	+	Renforce la taxe sur les transactions financières
+360	+	Taxe davantage l'assurance-vie au moment de la succession
+853	-	Supprime l'article créant la taxe Zucman
+854	-	Supprime la taxe Zucman
+855	-	Exonère de la taxe Zucman une partie des contribuables visés
+856	-	Exonère de la taxe Zucman les personnes installées en France depuis plus de dix ans
+857	-	Vide la taxe Zucman de sa base de calcul
+858	-	Vide la taxe Zucman de la liste des biens taxés
+859	-	Limite la taxe Zucman à la seule croissance du patrimoine
+860	-	Exclut les biens professionnels de la taxe Zucman
+861	-	Affaiblit l'évaluation des patrimoines dans la taxe Zucman
+862	-	Affaiblit l'évaluation des patrimoines dans la taxe Zucman
+863	-	Augmente l'abattement immobilier de la taxe Zucman
+864	-	Affaiblit l'évaluation des titres financiers dans la taxe Zucman
+865	-	Affaiblit l'évaluation des parts de sociétés immobilières dans la taxe Zucman
+866	-	Exclut les bénéfices non distribués de la taxe Zucman
+867	-	Exclut tous les biens professionnels de la taxe Zucman
+868	-	Exclut l'outil de travail de la taxe Zucman
+869	-	Supprime l'obligation de déclarer sa fortune pour la taxe Zucman
+870	-	Affaiblit les règles de déclaration de la taxe Zucman
+871	-	Affaiblit les règles de déclaration de la taxe Zucman
+872	-	Affaiblit la taxe Zucman en cas de décès
+873	-	Supprime l'obligation de justifier les dettes déduites
+874	-	Permet de payer la taxe Zucman en plusieurs fois
+875	-	Affaiblit la solidarité du paiement entre époux
+876	-	Supprime la date d'entrée en vigueur de la taxe Zucman
+877	-	Subordonne la taxe Zucman à un accord européen
+878	+	Article unique créant la taxe Zucman
+881	+	Taxe Zucman : impôt minimum de 2 % sur les patrimoines de plus de 100 millions d'euros
+3069	-	Supprime la contribution différentielle sur les hauts revenus
+3070	+	Porte à 30 % l'imposition minimale des hauts revenus
+3071	+	Renforce l'imposition minimale des hauts revenus
+3072	+	Pérennise l'imposition minimale des hauts revenus
+3073	+	Pérennise l'imposition minimale des hauts revenus
+3076	+	Crée un impôt universel pour taxer les exilés fiscaux
+3079	+	Plafonne l'avantage fiscal du quotient conjugal pour les plus hauts revenus
+3094	+	Crée un impôt sur le revenu à 14 tranches, plus progressif
+3095	+	Relève le taux des deux tranches supérieures et crée une nouvelle tranche
+3103	+	Plafonne à 1 250 € le crédit d'impôt pour emploi à domicile
+3104	+	Plafonne à 2 500 € le crédit d'impôt pour emploi à domicile
+3110	+	Rend dégressif avec le revenu le crédit d'impôt pour emploi à domicile
+3126	+	Triple la contribution sur les très hauts revenus
+3127	+	Double la contribution sur les très hauts revenus
+3128	+	Renforce la contribution sur les très hauts revenus
+3129	+	Étend la contribution sur les hauts revenus à partir de 180 000 € de revenus
+3130	+	Porte à 30 % l'imposition minimale des hauts revenus
+3131	+	Étend l'imposition minimale des hauts revenus à davantage de foyers
+3134	-	Supprime la contribution exceptionnelle des grandes entreprises
+3137	+	Maintient les taux de la contribution exceptionnelle des grandes entreprises
+3138	+	Maintient la contribution des grandes entreprises jusqu'au retour à 3 % de déficit
+3141	+	Maintient le taux de la contribution des grandes entreprises
+3142	+	Maintient le taux de la contribution des grandes entreprises
+3143	+	Maintient la contribution exceptionnelle des grandes entreprises
+3145	+	Prolonge la contribution des grandes entreprises sans en baisser le taux
+3176	+	Taxe de 4 % les dividendes et les rachats d'actions
+3177	+	Crée une contribution de 10 % sur les dividendes et rachats d'actions du CAC 40
+3178	+	Crée une contribution de 10 % sur les dividendes du CAC 40
+3180	+	Soumet les holdings à l'impôt sur les sociétés sur leurs bénéfices spéculatifs
+3201	+	Réduit l'exonération des dividendes et plus-values entre sociétés
+3202	+	Rétablit la progressivité de l'impôt pour le top 0,1 %
+3203	+	Réduit l'exonération des plus-values entre sociétés
+3208	+	Taxe davantage les entreprises qui distribuent leurs bénéfices en dividendes
+3210	+	Supprime la « niche Copé » qui exonère les plus-values des holdings
+3211	+	Rétablit la progressivité de l'impôt pour le top 0,1 %
+3212	+	Réduit la « niche Copé » qui exonère les plus-values des holdings
+3236	+	Taxe les superprofits
+3237	+	Taxe les superprofits des armateurs
+3240	+	Crée une surtaxe exceptionnelle sur les bénéfices des grandes entreprises
+3241	+	Taxe les grandes entreprises productrices d'hydrocarbures
+3242	+	Taxe la hausse des dividendes des grandes entreprises depuis 2019
+3278	-	Supprime la taxe sur les holdings patrimoniales
+3279	+	Taxe les profits qui échappent à l'impôt grâce aux holdings
+3281	+	Taxe les profits qui échappent à l'impôt grâce aux holdings
+3283	-	Réécrit la taxe sur les holdings pour en protéger les transmissions
+3284	+	Étend la taxe sur les holdings aux biens professionnels
+3285	+	Étend la taxe sur les holdings aux actifs professionnels
+3286	+	Étend la taxe sur les holdings aux biens professionnels
+3287	-	Limite le champ de la taxe sur les holdings
+3295	+	Rétablit un impôt sur la fortune (ISF) climatique
+3296	+	Rétablit un impôt sur la fortune (ISF)
+3297	+	Rétablit un impôt sur la fortune (ISF) climatique
+3298	+	Crée une contribution minimale sur les très hauts patrimoines
+3299	+	Crée un impôt plancher sur les fortunes de plus de 100 millions d'euros
+3300	+	Crée la taxe Zucman sur les plus grandes fortunes
+3301	+	Concentre l'impôt sur la fortune sur les plus de 100 millions d'euros
+3303	+	Crée un impôt minimum sur les très hauts patrimoines
+3304	+	Rétablit un impôt sur la fortune (ISF) renforcé
+3305	+	Rétablit un impôt sur la fortune (ISF) renforcé
+3306	+	Rétablit l'ISF tel qu'il existait jusqu'en 2017
+3307	+	Empêche le relèvement du seuil de l'impôt sur la fortune
+3312	+	Garde le barème actuel de l'impôt sur la fortune immobilière
+3313	+	Taxe à 1 % l'ensemble du patrimoine visé, sans franchise
+3315	+	Crée une taxe sur les grandes fortunes sur le modèle espagnol
+3316	+	Crée une taxe de 5 % sur le patrimoine des 1 % les plus riches
+3317	+	Soumet l'assurance-vie au barème normal des droits de succession
+3318	-	Crée une « flat tax » sur les loyers des investisseurs immobiliers
+3320	+	Relève de 5 points la « flat tax » sur les revenus du capital
+3321	+	Taxe chaque année les plus-values financières
+3322	+	Prélève à la source l'impôt sur les plus-values financières
+3327	-	Raccourcit la durée pour être exonéré d'impôt sur les plus-values des résidences secondaires
+3335	+	Supprime la « flat tax » pour imposer les revenus du capital au barème
+3336	+	Supprime la « flat tax » pour imposer les revenus du capital au barème
+3337	+	Supprime la « flat tax » pour imposer les revenus du capital au barème
+3340	-	Supprime le droit de partage sur les successions
+3341	+	Ferme une faille qui permet aux grandes fortunes de transmettre sans droits de succession
+3344	+	Rend plus progressive la taxation des héritages
+3345	+	Rend plus progressive la taxation des héritages
+3346	+	Taxe davantage les gros héritages et allège les petits
+3347	+	Taxe davantage les gros héritages et allège les petits
+3348	+	Taxe davantage les gros héritages
+3349	+	Taxe les héritages sur l'ensemble des sommes reçues dans la vie
+3350	+	Relève les droits sur les gros héritages
+3351	-	Facilite la transmission anticipée des contrats d'assurance-vie
+3352	+	Taxe les héritages sur l'ensemble des sommes reçues dans la vie
+3356	+	Supprime le pacte Dutreil
+3357	+	Encadre le pacte Dutreil au-delà de 50 millions d'euros
+3358	+	Restreint les actifs pouvant bénéficier du pacte Dutreil
+3359	+	Réduit l'exonération du pacte Dutreil au-delà de 50 millions d'euros
+3360	+	Empêche le cumul de deux niches fiscales dans le pacte Dutreil
+3361	+	Plafonne l'exonération du pacte Dutreil
+3362	+	Exclut les holdings du pacte Dutreil
+3363	+	Restreint les actifs pouvant bénéficier du pacte Dutreil
+3365	+	Allonge l'engagement de conservation et conditionne le pacte Dutreil à l'emploi
+3366	+	Allonge de 4 à 8 ans l'engagement de conservation du pacte Dutreil
+3367	+	Allonge l'engagement de conservation du pacte Dutreil
+3368	-	Assouplit le pacte Dutreil
+3369	-	Allège les droits de succession sur les entreprises
+3370	+	Restreint le pacte Dutreil en cas de donation avec usufruit
+3371	+	Supprime une exonération de droits de succession sur l'usufruit
+3374	+	Plafonne l'abattement sur la résidence principale dans l'impôt sur la fortune immobilière
+3375	-	Exonère d'impôt sur la fortune immobilière les monuments historiques ouverts au public
+3376	+	Réduit l'exonération des forêts dans l'impôt sur la fortune immobilière
+3377	-	Étend les avantages successoraux de l'assurance-vie aux PEA
+3378	+	Supprime une exonération de droits de succession sur l'usufruit
+3381	+	Taxe davantage les plus-values immobilières au-delà de 260 000 €
+3417	+	Augmente les cotisations retraite des plus hauts revenus
+3420	+	Crée une surcotisation retraite sur les salaires de plus de 8 700 € nets par mois
+3423	+	Augmente la CSG sur les revenus du capital
+3425	+	Augmente de 2 points la CSG sur les revenus du capital
+3426	+	Augmente la CSG sur les revenus du capital en 2026
+3427	+	Augmente la CSG sur les revenus du capital
+3429	+	Rend progressive la CSG sur les revenus du capital
+3430	+	Crée un prélèvement de 1 % sur les héritages et donations pour l'autonomie
+3432	+	Crée une contribution sur les héritages et donations pour l'autonomie
+3433	+	Crée une contribution exceptionnelle sur le patrimoine des milliardaires
+3441	+	Taxe les superprofits pour financer les retraites
+3445	+	Crée une contribution exceptionnelle sur les dividendes pour les retraites
+3446	+	Crée une contribution de 10 % sur les dividendes pour les retraites
+3447	+	Soumet les revenus financiers des sociétés à une cotisation retraite
+3454	+	Taxe les superprofits des pétroliers
+3464	+	Plafonne un abattement de CSG pour les très hauts salaires
+3466	+	Augmente la taxe sur les retraites chapeau
+3467	+	Augmente la taxe sur les retraites chapeau les plus importantes
+3468	+	Augmente la taxe sur les retraites chapeau les plus importantes
+3469	+	Augmente la taxe sur les stock-options
+3495	+	Soumet les dividendes aux cotisations sociales
+3786	+	Taxe la hausse des dividendes des grandes entreprises
+3787	+	Crée une contribution exceptionnelle sur les superdividendes
+3789	+	Prolonge la contribution exceptionnelle des armateurs
+3979	+	Applique la taxe carbone aux yachts
+4006	+	Élargit la taxe sur les transactions financières
+4007	+	Renforce la taxe sur les transactions financières
+4008	+	Élargit la taxe sur les transactions financières aux opérations de la journée
+4009	+	Augmente la taxe sur les transactions financières
+4010	+	Augmente la taxe sur les transactions financières
+5008	+	Pérennise l'imposition minimale des hauts revenus
+5016	+	Rétablit et renforce la taxe sur les holdings patrimoniales
+5018	+	Rétablit la taxe sur les holdings patrimoniales
+5019	+	Rétablit la taxe sur les holdings patrimoniales
+5020	+	Rétablit la taxe sur les holdings patrimoniales
+5022	-	Supprime l'élargissement de l'impôt sur la fortune aux actifs financiers
+5024	+	Élargit l'impôt sur la fortune aux actions et parts de sociétés
+5025	-	Exonère d'impôt sur la fortune les œuvres d'art et objets de collection
+5026	+	Élargit l'impôt sur la fortune immobilière à la fortune financière
+5027	+	Maintient le seuil de l'impôt sur la fortune à 1,3 million d'euros
+5028	+	Élargit l'assiette de la contribution sur les hauts patrimoines
+5033	-	Supprime les nouvelles restrictions du pacte Dutreil
+5034	+	Allonge à 8 ans l'engagement de conservation du pacte Dutreil
+5039	+	Supprime un avantage fiscal sur les plus-values des holdings
+5041	+	Maintient la contribution des grandes entreprises au niveau de 2025
+5042	+	Rétablit la contribution des grandes entreprises
+5044	+	Supprime une nouvelle exonération fiscale pour les associés
+5045	+	Supprime une exonération de plus-values des actionnaires majoritaires
+7317	-	Supprime la taxe additionnelle sur les transactions financières
+7320	-	Supprime la taxe additionnelle sur les transactions financières

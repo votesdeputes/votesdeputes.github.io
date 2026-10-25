@@ -261,7 +261,7 @@ def page(title, description, body, depth=0, scripts=(), styles=()):
 </head>
 <body data-root="{up}" data-v="{VERSION}">
 <div class="wrap">
-<nav class="top"><a href="{up}index.html" class="brand">{escape(SITE_NAME)}</a><a href="{up}methode.html">Méthode</a></nav>
+<nav class="top"><a href="{up}index.html" class="brand">{escape(SITE_NAME)}</a><span class="nav-liens"><a href="{up}causes/index.html">Les causes</a><a href="{up}methode.html">Méthode</a></span></nav>
 {body}
 <footer>
 <div>Source : open data de l'Assemblée nationale (data.assemblee-nationale.fr), Licence Ouverte. Mise à jour le {date.today().strftime('%d/%m/%Y')}.</div>
@@ -273,7 +273,7 @@ def page(title, description, body, depth=0, scripts=(), styles=()):
 """
 
 
-def page_depute(d, st, zones):
+def page_depute(d, st, zones, causes=()):
     elle = d["civ"] == "Mme"
     il = "elle" if elle else "il"
     titre_civ = "Députée" if elle else "Député"
@@ -296,6 +296,7 @@ def page_depute(d, st, zones):
   <div class="stat"><b>{pct(st['participation'])}</b><span>de participation à tous les scrutins publics (moyenne des députés : {pct(st['moyenne'])})</span></div>
   <div class="stat"><b>{pct(st['groupe']) if st['groupe'] is not None else '–'}</b><span>{'de ses votes identiques à la position de son groupe' if st['groupe'] is not None else 'Non inscrit : pas de groupe de référence'}</span></div>
 </div>
+{section_causes_depute(st, causes, il)}
 <section>
   <h2>Avec quels groupes vote-t-{il} ?</h2>
   <p class="sub">Part des scrutins où son vote (pour, contre ou abstention) est le même que la position majoritaire de chaque groupe. Calculé sur les {fr_num(st['votes'])} scrutins auxquels {il} a participé.</p>
@@ -391,6 +392,11 @@ def page_index(deputes, departements):
   <div id="resultats" class="result" aria-live="polite"></div>
   <p class="sub">Les Français de l'étranger peuvent taper leur ville de résidence. Pour une adresse précise, utilisez <a href="https://www.assemblee-nationale.fr/dyn/vos-deputes" target="_blank" rel="noopener">la recherche de l'Assemblée nationale</a>.</p>
 </section>
+<a class="encart-causes" href="causes/index.html">
+  <span class="eyebrow">Les causes</span>
+  <b>Comment votent les groupes sur les énergies fossiles, les impôts des plus riches, la santé ?</b>
+  <span>Chaque vote classé selon qu'il fait avancer ou reculer la cause →</span>
+</a>
 <section>
   <h2>La carte des circonscriptions</h2>
   <p class="sub">Chaque circonscription a la couleur du groupe de son député. Touchez-en une pour voir qui la représente.</p>
@@ -422,6 +428,157 @@ def page_index(deputes, departements):
     return page(f"{SITE_NAME} · Comment vote votre député ?",
                 "Retrouvez les votes des 577 députés à l'Assemblée nationale, par commune ou code postal, d'après l'open data officiel.",
                 body, scripts=("vendor/leaflet.js", "index.js", "carte.js"), styles=("vendor/leaflet.css",))
+
+
+# ---------------------------------------------------------------- Causes
+# Chaque vote classé dans data/causes/<id>-*.tsv dit si adopter le texte fait avancer (+) ou reculer (-) la cause.
+
+def charge_causes():
+    conf = json.loads((ROOT / "data" / "causes.json").read_text(encoding="utf-8"))["causes"]
+    for c in conf:
+        c["votes"] = {}
+        for f in sorted((ROOT / "data" / "causes").glob(f"{c['id']}-*.tsv")):
+            for ligne in f.read_text(encoding="utf-8").splitlines():
+                if ligne.strip() and not ligne.startswith("#"):
+                    n, sens, raison = ligne.split("\t", 2)
+                    c["votes"][int(n)] = (1 if sens.strip() == "+" else -1, raison.strip())
+    return conf
+
+
+def sens_cause(code, sens):
+    """Vote d'un député (p, c, a) traduit en position sur la cause : « p » pour, « c » contre, « a » abstention."""
+    if code == "a":
+        return "a"
+    if code not in ("p", "c"):
+        return None
+    return "p" if (code == "p") == (sens > 0) else "c"
+
+
+def calc_causes(causes, scrutins):
+    par_n = {s["n"]: s for s in scrutins}
+    for c in causes:
+        groupes = {g: {"p": 0, "c": 0, "a": 0} for g in GROUPES}
+        lignes = []
+        for n, (sens, raison) in sorted(c["votes"].items(), key=lambda x: -x[0]):
+            s = par_n.get(n)
+            if not s:
+                continue
+            for code, abrev in s["votes"].values():
+                pos = sens_cause(code, sens)
+                if pos and abrev in groupes:
+                    groupes[abrev][pos] += 1
+            gpos = "".join((sens_cause(p, sens) or "-") if p in ("p", "c", "a") else "-" for p in s["gpos"])
+            lignes.append({"n": n, "date": s["date"], "raison": raison, "titre": s["titre"], "sens": sens,
+                           "adopte": s["adopte"], "gpos": gpos, "final": s["cat"] == "e"})
+        c["groupes"] = groupes
+        c["lignes"] = lignes
+    return causes
+
+
+def causes_depute(d, causes, par_n):
+    """Positions d'un député sur chaque cause : pour, contre, abstention, absent (votes pendant son mandat)."""
+    out = {}
+    for c in causes:
+        r = {"p": 0, "c": 0, "a": 0, "x": 0}
+        for n, (sens, _) in c["votes"].items():
+            s = par_n.get(n)
+            if not s or not any(a <= s["date"] <= b for a, b in d["periodes"]):
+                continue
+            v = s["votes"].get(d["id"])
+            pos = sens_cause(v[0], sens) if v else None
+            r[pos or "x"] += 1
+        out[c["id"]] = r
+    return out
+
+
+def barre_cause(r, sigle=None, couleur=None):
+    """Une barre empilée pour / abstention / contre, en pourcentage des votes exprimés."""
+    total = r["p"] + r["c"] + r["a"]
+    if not total:
+        return ""
+    p, a, c = (round(100 * r[k] / total) for k in ("p", "a", "c"))
+    lab = f'<span class="cb-lab"><i style="background:{escape(couleur)}"></i>{escape(sigle)}</span>' if sigle else ""
+    tp = f"{p} %" if p >= 9 else ""
+    tc = f"{c} %" if c >= 9 else ""
+    return (f'<div class="cb">{lab}<div class="cb-barre" role="img" aria-label="{p} % pour, {a} % abstention, {c} % contre">'
+            f'<i class="cb-p" style="width:{p}%">{tp}</i><i class="cb-a" style="width:{a}%"></i>'
+            f'<i class="cb-c" style="width:{c}%">{tc}</i></div></div>')
+
+
+def legende_cause(c):
+    return (f'<div class="cb-legende"><span><i class="cb-p"></i>{escape(c["pour"])}</span>'
+            f'<span><i class="cb-a"></i>Abstention</span><span><i class="cb-c"></i>{escape(c["contre"])}</span></div>')
+
+
+def barres_groupes(c, infos):
+    part = lambda g: c["groupes"][g]["p"] / max(1, sum(c["groupes"][g].values()))
+    return "".join(barre_cause(c["groupes"][g], infos[g]["sigle"], infos[g]["couleur"])
+                   for g in sorted(GROUPES, key=lambda g: -part(g)) if sum(c["groupes"][g].values()))
+
+
+def page_cause(c, infos):
+    lignes = []
+    for x in c["lignes"]:
+        chips = "".join(f'<span class="chip cv-{p}">{escape(infos[g]["sigle"])}</span>'
+                        for g, p in zip(GROUPES, x["gpos"]) if p != "-")
+        avance = x["sens"] > 0
+        lignes.append(
+            f'<li class="row cause-row"><span class="chip vote cv-{"p" if avance else "c"}">{"Avance" if avance else "Recul"}</span>'
+            f'<div class="t"><b>{escape(x["raison"])}</b><small>{escape(x["titre"])}</small></div>'
+            f'<div class="meta"><span>{fr_date(x["date"])}</span><span class="res-{x["adopte"]}">{"Adopté" if x["adopte"] else "Rejeté"}</span>'
+            f'<a href="https://www.assemblee-nationale.fr/dyn/17/scrutins/{x["n"]}" target="_blank" rel="noopener">Scrutin n° {x["n"]}</a></div>'
+            f'<div class="gp cause-gp">{chips}</div></li>')
+    body = f"""
+<header class="hero">
+  <div class="eyebrow"><a href="../index.html">Les causes</a></div>
+  <h1>{escape(c['titre'])}</h1>
+  <p class="lede">{escape(c['question'])}</p>
+</header>
+<section>
+  <p class="sub">{escape(c['intro'])}</p>
+  {legende_cause(c)}
+  <div class="cbs">{barres_groupes(c, infos)}</div>
+  <p class="sub">En % des votes exprimés de chaque groupe, sur les {len(c['lignes'])} scrutins classés pour cette cause (amendements et textes de loi).</p>
+</section>
+<section>
+  <h2>Les votes pris en compte</h2>
+  <p class="sub">« Avance » : adopter ce texte fait avancer la cause. « Recul » : l'adopter la fait reculer. Sous chaque vote, les groupes en vert ont voté majoritairement dans le sens de la cause, ceux en rouge contre.</p>
+  <ol class="list">{''.join(lignes)}</ol>
+</section>
+"""
+    return page(f"{c['titre']} · {SITE_NAME}", c["question"], body, depth=2)
+
+
+def page_causes(causes, infos):
+    cartes = "".join(
+        f'<a class="cause-carte" href="{c["id"]}/index.html"><h2>{escape(c["titre"])}</h2><p class="sub">{escape(c["question"])}</p>'
+        f'{legende_cause(c)}<div class="cbs">{barres_groupes(c, infos)}</div><span class="lien-suite">Voir les {len(c["lignes"])} votes →</span></a>'
+        for c in causes)
+    body = f"""
+<header class="hero">
+  <div class="eyebrow">Les causes</div>
+  <h1>Comment votent les groupes sur ce qui compte ?</h1>
+  <p class="lede">Pour chaque cause, chaque vote est classé selon qu'il la fait avancer ou reculer. Les barres montrent comment chaque groupe a voté.</p>
+</header>
+<p class="sub">Ce site assume ses choix : il considère que sortir des énergies fossiles, faire contribuer les plus riches ou protéger la santé sont des objectifs souhaitables. Chaque classement est justifié, vote par vote, avec un lien vers le scrutin officiel. <a href="../methode.html">Méthode</a>.</p>
+<div class="causes-liste">{cartes}</div>
+"""
+    return page(f"Les causes · {SITE_NAME}", "Comment votent les groupes de l'Assemblée sur les grandes causes.", body, depth=1)
+
+
+def section_causes_depute(st, causes, il):
+    lignes = "".join(
+        f'<a class="cause-dep" href="../../causes/{c["id"]}/index.html"><span class="cd-titre">{escape(c["titre"])}</span>'
+        f'{barre_cause(st["causes"][c["id"]])}<span class="cd-det mono">{st["causes"][c["id"]]["p"]} pour · '
+        f'{st["causes"][c["id"]]["c"]} contre · {st["causes"][c["id"]]["a"]} abst. · {st["causes"][c["id"]]["x"]} absent</span></a>'
+        for c in causes if sum(st["causes"][c["id"]].values()))
+    if not lignes:
+        return ""
+    return f"""<section>
+  <h2>Ses votes sur les grandes causes</h2>
+  <p class="sub">Pour chaque cause, ses votes classés selon qu'ils la font avancer (vert) ou reculer (rouge). Touchez une cause pour voir le détail.</p>
+  <div class="causes-dep">{lignes}</div>
+</section>"""
 
 
 def main():
@@ -466,14 +623,25 @@ def main():
                   [ids.index(i) for i in s["themes"]], s["resume"]] for s in scrutins],
     }, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
 
+    causes = calc_causes(charge_causes(), scrutins)
+    infos = {g["abrev"]: {"sigle": g["sigle"], "couleur": g["couleur"]} for g in groupes.values() if g["abrev"] in GROUPES}
+    par_n = {s["n"]: s for s in scrutins}
+    (OUT / "causes").mkdir()
+    (OUT / "causes" / "index.html").write_text(page_causes(causes, infos), encoding="utf-8")
+    for c in causes:
+        (OUT / "causes" / c["id"]).mkdir()
+        (OUT / "causes" / c["id"] / "index.html").write_text(page_cause(c, infos), encoding="utf-8")
+        print(f"cause {c['id']} : {len(c['lignes'])} votes")
+
     for d in deputes:
         st = stats_depute(d, scrutins)
+        st["causes"] = causes_depute(d, causes, par_n)
         votes = "".join(f"{s['n']}{s['votes'][d['id']][0]}" for s in scrutins if d["id"] in s["votes"])
         (OUT / "data" / "votes" / f"{d['id']}.txt").write_text(votes, encoding="utf-8")
         zones = [f"{a}{'er' if a == '1' else 'e'} arr." + ("" if z["zone"] == "Tout l'arrondissement" else " (partie)")
                  for a, zs in decoupages.get(d["dep"], {}).items() for z in zs if z["circo"] == d["circo"]]
         (OUT / d["url"]).mkdir(parents=True)
-        (OUT / d["url"] / "index.html").write_text(page_depute(d, st, zones), encoding="utf-8")
+        (OUT / d["url"] / "index.html").write_text(page_depute(d, st, zones, causes), encoding="utf-8")
 
     for code, dep in departements.items():
         (OUT / code.lower()).mkdir(exist_ok=True)

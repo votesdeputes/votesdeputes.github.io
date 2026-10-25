@@ -139,3 +139,38 @@ a.pick:hover{border-color:var(--accent)}
 .resume b{font-weight:600}
 @media (max-width:520px){.row{grid-template-columns:1fr}.row .vote{grid-row:auto;justify-self:start}.meta,details.groups{grid-column:1}.bar{grid-template-columns:4.6rem 1fr 3rem}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* Causes : vert = pour la cause, rouge = contre, gris = abstention. Le site assume ici un parti pris. */
+:root{--cause-p:#2f8f5b;--cause-c:#d0503f;--cause-a:#cfd2d8;--cause-txt:#ffffff}
+@media (prefers-color-scheme:dark){:root{--cause-p:#3fa56d;--cause-c:#e0604f;--cause-a:#4a4f5c}}
+.nav-liens{display:flex;gap:16px}
+.cb-legende{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.88rem;color:var(--muted)}
+.cb-legende span{display:inline-flex;align-items:center;gap:6px}
+.cb-legende i{display:inline-block;width:.8em;height:.8em;border-radius:3px}
+.cbs{display:grid;gap:6px}
+.cb{display:grid;grid-template-columns:5.5rem minmax(0,1fr);gap:10px;align-items:center}
+.cb-lab{display:inline-flex;align-items:center;gap:6px;font-weight:600;font-size:.88rem}
+.cb-lab i{display:inline-block;width:.7em;height:.7em;border-radius:50%}
+.cb-barre{display:flex;height:22px;border-radius:5px;overflow:hidden;background:var(--abs-bg)}
+.cb-barre i,.cb-legende i{font-style:normal}
+.cb-barre i{display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;color:var(--cause-txt);white-space:nowrap;overflow:hidden}
+i.cb-p{background:var(--cause-p)}i.cb-c{background:var(--cause-c)}i.cb-a{background:var(--cause-a)}
+.causes-liste{display:grid;gap:16px}
+.cause-carte{display:grid;gap:10px;padding:18px;border:1px solid var(--line);border-radius:12px;background:var(--surface);text-decoration:none;color:var(--fg)}
+.cause-carte:hover{border-color:var(--accent)}
+.lien-suite{color:var(--accent);font-weight:600}
+.encart-causes{display:grid;gap:4px;padding:16px 18px;border-radius:12px;background:var(--accent-soft);text-decoration:none;color:var(--fg)}
+.encart-causes b{font-family:var(--f-display);font-size:1.2rem}
+.encart-causes span:last-child{color:var(--accent);font-weight:600}
+.cause-row .t small{display:block;color:var(--muted);font-size:.84rem;margin-top:2px}
+.cause-gp{grid-column:2;margin-top:2px}
+.chip.cv-p{background:var(--cause-p);color:var(--cause-txt)}
+.chip.cv-c{background:var(--cause-c);color:var(--cause-txt)}
+.chip.cv-a{background:var(--cause-a);color:var(--fg)}
+.causes-dep{display:grid;gap:12px}
+.cause-dep{display:grid;gap:4px;text-decoration:none;color:var(--fg)}
+.cause-dep:hover .cd-titre{color:var(--accent)}
+.cd-titre{font-weight:600}
+.cd-det{color:var(--muted);font-size:.78rem}
+.cause-dep .cb{grid-template-columns:1fr}
+@media (max-width:520px){.cause-gp{grid-column:1}.cb{grid-template-columns:4.2rem minmax(0,1fr)}}
