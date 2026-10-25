@@ -3,6 +3,8 @@
   const S = D.stats;
   const root = document.body.dataset.root;
   const VL = {p:["Pour","v-p"], c:["Contre","v-c"], a:["Abstention","v-a"], n:["Non-votant","v-n"], "":["Absent","v-x"]};
+  // Libellés du vote du député lui-même : « A voté pour » se lit comme son vote, pas comme un avis sur le sujet.
+  const VOTE = {p:"A voté pour", c:"A voté contre", a:"S'est abstenu", n:"Non-votant", "":"Absent"};
   const fmt = n => n.toLocaleString("fr-FR");
   const pct = n => String(n).replace(".", ",") + " %";
   const fdate = s => new Date(s + "T12:00:00").toLocaleDateString("fr-FR", {day:"numeric", month:"short", year:"numeric"});
@@ -62,9 +64,9 @@
     $("tabnote").textContent = NOTES[cat];
     $("list").innerHTML = list.length ? list.slice(0, shown).map(r => {
       const v = votes[r[0]] || "";
-      let [lab, cls] = VL[v];
+      let [, cls] = VL[v], lab = VOTE[v];
       if (r[2] === "m" && !v) lab = "N'a pas censuré";
-      const tags = r[8].map(i => `<span class="tag">${esc(themes[i].nom)}</span>`).join("");
+      const tags = r[8].length ? `<span class="sujets-tags">Sujets concernés : ${r[8].map(i => `<span class="tag">${esc(themes[i].nom)}</span>`).join("")}</span>` : "";
       const gp = r[7].split("").map((p, i) => p === "-" ? "" :
         `<span class="chip ${VL[p][1]}">${esc(sigle(groupes[i]))} · ${VL[p][0].toLowerCase()}</span>`).join("");
       return `<li class="row"><span class="chip vote ${cls}">${lab}</span><div class="t">${esc(r[3])}</div>
