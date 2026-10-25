@@ -394,7 +394,7 @@ def page_index(deputes, departements):
 </section>
 <a class="encart-causes" href="causes/index.html">
   <span class="eyebrow">Les causes</span>
-  <b>Comment votent les groupes sur les énergies fossiles, les impôts des plus riches, la santé ?</b>
+  <b>Comment votent les groupes sur le climat, le pouvoir d'achat, les impôts des plus riches, la santé, les droits des femmes… ?</b>
   <span>Chaque vote classé selon qu'il fait avancer ou reculer la cause →</span>
 </a>
 <section>
@@ -560,7 +560,7 @@ def page_causes(causes, infos):
   <h1>Comment votent les groupes sur ce qui compte ?</h1>
   <p class="lede">Pour chaque cause, chaque vote est classé selon qu'il la fait avancer ou reculer. Les barres montrent comment chaque groupe a voté.</p>
 </header>
-<p class="sub">Ce site assume ses choix : il considère que sortir des énergies fossiles, faire contribuer les plus riches ou protéger la santé sont des objectifs souhaitables. Chaque classement est justifié, vote par vote, avec un lien vers le scrutin officiel. <a href="../methode.html">Méthode</a>.</p>
+<p class="sub">Ce site assume ses choix : il considère que les dix causes ci-dessous sont des objectifs souhaitables. Chaque classement est justifié, vote par vote, avec un lien vers le scrutin officiel. <a href="../methode.html">Méthode</a>.</p>
 <div class="causes-liste">{cartes}</div>
 """
     return page(f"Les causes · {SITE_NAME}", "Comment votent les groupes de l'Assemblée sur les grandes causes.", body, depth=1)

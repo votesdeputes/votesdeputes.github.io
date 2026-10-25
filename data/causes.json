@@ -10,6 +10,14 @@
       "intro": "Taxer le kérosène et les jets privés, supprimer les niches fiscales des carburants, développer les énergies renouvelables, rénover les logements mal isolés, garder les zones à faibles émissions : ce sont les leviers pour moins dépendre du pétrole, du gaz et du charbon, premiers responsables du réchauffement climatique."
     },
     {
+      "id": "pouvoir",
+      "titre": "Augmenter le pouvoir d'achat",
+      "question": "Les députés votent-ils pour augmenter les revenus et faire baisser les dépenses contraintes des ménages ?",
+      "pour": "Pour le pouvoir d'achat",
+      "contre": "Contre le pouvoir d'achat",
+      "intro": "Revaloriser les prestations et les pensions au lieu de les geler, baisser la CSG sur les bas salaires, protéger les tarifs réglementés de l'électricité, encadrer les marges, les loyers et les prix : ce sont les leviers pour que les fins de mois soient moins difficiles."
+    },
+    {
       "id": "riches",
       "titre": "Taxer les ultra-riches",
       "question": "Les députés votent-ils pour faire contribuer davantage les plus grandes fortunes et les plus hauts revenus ?",
@@ -18,12 +26,60 @@
       "intro": "Impôt sur la fortune, taxe Zucman sur les patrimoines de plus de 100 millions d'euros, taxation des dividendes, des gros héritages et des superprofits, fin des niches fiscales qui profitent surtout aux plus aisés : ce sont les moyens de faire contribuer davantage ceux qui ont le plus."
     },
     {
+      "id": "fraude",
+      "titre": "Lutter contre la fraude fiscale",
+      "question": "Les députés votent-ils pour lutter contre la fraude et l'évasion fiscales ?",
+      "pour": "Contre la fraude fiscale",
+      "contre": "Contre la lutte anti-fraude",
+      "intro": "Taxer les multinationales là où elles font leurs bénéfices, sanctionner les montages et leurs conseillers, lutter contre les paradis fiscaux et le blanchiment, donner des moyens au contrôle fiscal : la fraude et l'évasion fiscales coûtent des dizaines de milliards d'euros par an. Le projet de loi « fraudes sociales et fiscales » de 2026 n'est pas classé en bloc, car il mêle fraude fiscale et contrôle des allocataires."
+    },
+    {
       "id": "sante",
       "titre": "Protéger la santé",
       "question": "Les députés votent-ils pour protéger la santé face aux pesticides, aux polluants, à l'alcool et au tabac, et pour l'accès aux soins ?",
       "pour": "Pour protéger la santé",
       "contre": "Contre la protection de la santé",
       "intro": "Interdire les pesticides dangereux et protéger l'eau potable, taxer les pollueurs aux PFAS, limiter le sucre, l'alcool et le tabac, garantir assez de soignants à l'hôpital et lutter contre les déserts médicaux : ce sont les leviers pour protéger la santé de toutes et tous."
+    },
+    {
+      "id": "femmes",
+      "titre": "Défendre les droits des femmes",
+      "question": "Les députés votent-ils pour l'égalité femmes-hommes et contre les violences faites aux femmes ?",
+      "pour": "Pour les droits des femmes",
+      "contre": "Contre les droits des femmes",
+      "intro": "Inscrire le consentement dans la définition du viol, protéger les victimes de violences, garantir l'accès à l'IVG, imposer l'égalité salariale et la parité, soutenir les mères seules : ce sont les leviers pour l'égalité réelle."
+    },
+    {
+      "id": "lgbt",
+      "titre": "Défendre les droits LGBT",
+      "question": "Les députés votent-ils pour protéger les personnes LGBT et réparer les discriminations ?",
+      "pour": "Pour les droits LGBT",
+      "contre": "Contre les droits LGBT",
+      "intro": "Réparer la répression subie par les homosexuels jusqu'en 1982, prendre en compte l'identité de genre, lutter contre l'homophobie et garantir l'éducation à la sexualité. Peu de textes ont été votés sur ce sujet pendant cette législature : les résultats portent sur un petit nombre de votes."
+    },
+    {
+      "id": "vieprivee",
+      "titre": "Protéger la vie privée",
+      "question": "Les députés votent-ils pour protéger nos données personnelles et limiter la surveillance ?",
+      "pour": "Pour la vie privée",
+      "contre": "Contre la vie privée",
+      "intro": "Vidéosurveillance algorithmique, reconnaissance faciale, drones, activation à distance des téléphones, accès aux messageries chiffrées, fichiers génétiques, accès des administrations aux données des allocataires : chaque nouvel outil de surveillance réduit un peu plus notre vie privée."
+    },
+    {
+      "id": "adaptation",
+      "titre": "S'adapter au changement climatique",
+      "question": "Les députés votent-ils pour préparer le pays aux sécheresses, inondations et vagues de chaleur ?",
+      "pour": "Pour l'adaptation",
+      "contre": "Contre l'adaptation",
+      "intro": "Financer la prévention des catastrophes naturelles, protéger les assurés, adapter les logements à la chaleur, préserver les sols et partager l'eau plutôt que la stocker dans des méga-bassines : ce sont les leviers pour vivre dans une France à +4 °C."
+    },
+    {
+      "id": "elevage",
+      "titre": "Sortir de l'élevage intensif",
+      "question": "Les députés votent-ils pour sortir de l'élevage intensif et protéger le bien-être animal ?",
+      "pour": "Contre l'élevage intensif",
+      "contre": "Pour l'élevage intensif",
+      "intro": "Accès au plein air, fin des cages, encadrement environnemental des fermes-usines, repas végétariens dans les cantines, protéines végétales : ce sont les leviers pour sortir d'un modèle qui pollue l'eau et l'air et fait souffrir les animaux."
     }
   ]
 }
